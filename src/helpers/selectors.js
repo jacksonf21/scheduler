@@ -1,49 +1,42 @@
 
 export function getAppointmentsForDay(state, day) {
-  const selectAppoint = [];
-
-  const filteredAppointmentsDay = state.days.filter(objDay => objDay.name === day);
-  if (!filteredAppointmentsDay.length) return selectAppoint;
-
-  const appointments = filteredAppointmentsDay[0].appointments;
-
-  let i = 0;
-  let j = 1;
-
-  while (i < appointments.length) {
-    if (appointments[i] === state.appointment[j].id) {
-      selectAppoint.push(state.appointment[j]);
-      i++;
-      j = 1;
-    } else {
-      j++;
-    }
+  const filteredApptDay = state.days.filter(objDay => objDay.name === day);
+  let selectAppoint = [];
+  
+  if (filteredApptDay.length) {
+    const appointments = filteredApptDay[0].appointments;
+    selectAppoint = appointments.map(num => state.appointment[num]);
   }
   
   return selectAppoint;
 };
 
 export function getInterviewersForDay(state, day) {
-  const selectInterviewer = [];
+  const filteredApptDay = state.days.filter(objDay => objDay.name === day);
+  let selectInterviewer = [];
 
-  const filteredAppointmentsDay = state.days.filter(objDay => objDay.name === day);
-  if (!filteredAppointmentsDay.length) return selectInterviewer;
+  if (filteredApptDay.length) {
+    const appointments = filteredApptDay[0].interviewers;
 
-  const appointments = filteredAppointmentsDay[0].interviewers;
-
-  let i = 0;
-  let j = 1;
-
-  while (i < appointments.length) {
-    if (appointments[i] === state.interviewers[j].id) {
-      selectInterviewer.push(state.interviewers[j]);
-      i++;
-      j = 1;
-    } else {
-      j++;
+    let i = 0;
+    let j = 1;
+  
+    while (i < appointments.length) {
+      if (appointments[i] === state.interviewers[j].id) {
+        selectInterviewer.push(state.interviewers[j]);
+        i++;
+        j = 1;
+      } else {
+        j++;
+      }
     }
   }
   
+  // if (filteredApptDay.length) {
+  //   const appointments = filteredApptDay[0].appointments;
+  //   selectInterviewer = appointments.map(num => state.interviewers[num]);
+  // }
+
   return selectInterviewer;
 };
 

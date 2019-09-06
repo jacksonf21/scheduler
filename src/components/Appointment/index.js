@@ -30,11 +30,18 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview)
-    .then((res) => {
-      transition(SHOW);
-    })
-    .catch(error => transition(ERRORSAVE, true));
+
+    // const selected = props.
+
+    if (interview.student.length !== 0 && interviewer) {
+      props.bookInterview(props.id, interview)
+      .then((res) => {
+        transition(SHOW);
+      })
+      // .catch(error => transition(ERRORSAVE, true));
+    } else {
+      transition(ERRORSAVE, true);
+    }
   }
 
   function deleteInt(name, interviewer) {
