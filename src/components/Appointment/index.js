@@ -31,14 +31,12 @@ export default function Appointment(props) {
       interviewer
     };
 
-    // const selected = props.
-
     if (interview.student.length !== 0 && interviewer) {
       props.bookInterview(props.id, interview)
       .then((res) => {
         transition(SHOW);
       })
-      // .catch(error => transition(ERRORSAVE, true));
+      .catch(error => transition(ERRORSAVE, true));
     } else {
       transition(ERRORSAVE, true);
     }

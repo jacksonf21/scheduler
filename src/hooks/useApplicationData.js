@@ -68,7 +68,6 @@ export default function useApplicationData() {
   },[]);
 
   function bookInterview(id, interview) {
-    console.log(interview);
     
     const appointmentLoader = {
       ...state.appointment[id],

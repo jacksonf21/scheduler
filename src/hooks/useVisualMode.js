@@ -11,7 +11,6 @@ export default function useVisualMode(initial) {
       setHistory(history => [...history].slice(0, history.length - 1).concat(newMode));
     } else {
       setHistory(history => [...history, newMode]);
-      console.log(history);
     }
   }; 
 
