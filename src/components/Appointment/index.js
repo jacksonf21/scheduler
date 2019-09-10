@@ -40,15 +40,16 @@ export default function Appointment(props) {
       interviewer
     };
 
-    if (interview.student.length !== 0 && interviewer) {
+    //ERROR HANDLING MUST BE FIXED
+    // if (interview.student.length !== 0 && interviewer) {
       props.bookInterview(props.id, interview)
       .then((res) => {
         transition(SHOW);
       })
       .catch(error => transition(ERRORSAVE, true));
-    } else {
-      transition(ERRORSAVE, true);
-    }
+    // } else {
+    //   transition(ERRORSAVE, true);
+    // }
   }
 
   function deleteInt(name, interviewer) {
@@ -65,7 +66,7 @@ export default function Appointment(props) {
   }
   
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header 
         time={props.time}
       />
