@@ -16,13 +16,13 @@ export function getInterviewersForDay(state, day) {
   let selectInterviewer = [];
 
   if (filteredApptDay.length) {
-    const appointments = filteredApptDay[0].interviewers;
+    const interviewers = filteredApptDay[0].interviewers;
 
     let i = 0;
     let j = 1;
   
-    while (i < appointments.length) {
-      if (appointments[i] === state.interviewers[j].id) {
+    while (i < interviewers.length) {
+      if (interviewers[i] === state.interviewers[j].id) {
         selectInterviewer.push(state.interviewers[j]);
         i++;
         j = 1;
@@ -31,11 +31,6 @@ export function getInterviewersForDay(state, day) {
       }
     }
   }
-  
-  // if (filteredApptDay.length) {
-  //   const appointments = filteredApptDay[0].appointments;
-  //   selectInterviewer = appointments.map(num => state.interviewers[num]);
-  // }
 
   return selectInterviewer;
 };

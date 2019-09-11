@@ -40,16 +40,15 @@ export default function Appointment(props) {
       interviewer
     };
 
-    //ERROR HANDLING MUST BE FIXED
-    // if (interview.student.length !== 0 && interviewer) {
+    if (interview.student.length !== 0 && interviewer) {
       props.bookInterview(props.id, interview)
       .then((res) => {
         transition(SHOW);
       })
       .catch(error => transition(ERRORSAVE, true));
-    // } else {
-    //   transition(ERRORSAVE, true);
-    // }
+    } else {
+      transition(ERRORSAVE, true);
+    }
   }
 
   function deleteInt(name, interviewer) {
