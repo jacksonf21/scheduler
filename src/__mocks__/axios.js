@@ -53,13 +53,12 @@ const fixtures = {
   }
 };
 
+//MANUAL SET OF DATA IS NEEDED DUE TO SPOTS BEING ASSIGNED VIA GET REQ IN REAL APP
+
 export default {
   get: jest.fn(url => {
     const endpoint = url.split('/').slice(3).join('/');
-    
     if (endpoint === "api/days") {
-      // console.log(url);
-      // console.log('!!!!', fixtures.days);
       return Promise.resolve({
         status: 200,
         statusText: "OK",
