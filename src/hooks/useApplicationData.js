@@ -16,7 +16,7 @@ export default function useApplicationData() {
     );
 
   useEffect(() => {
-    const sock = new WebSocket(`ws://scheduler--api.herokuapp.com`); 
+    const sock = new WebSocket(`wss://scheduler--api.herokuapp.com`); 
     sock.addEventListener('open', () => {
       sock.send('ping');
     });
