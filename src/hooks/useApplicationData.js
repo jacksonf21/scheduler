@@ -16,7 +16,7 @@ export default function useApplicationData() {
     );
 
   useEffect(() => {
-    const sock = new WebSocket(`ws://localhost:8001`); 
+    const sock = new WebSocket(`ws://scheduler--api.herokuapp.com`); 
     sock.addEventListener('open', () => {
       sock.send('ping');
     });
@@ -25,7 +25,7 @@ export default function useApplicationData() {
       const msg = JSON.parse(event.data);
       
       if (msg.type === "SET_INTERVIEW") {
-        axios.get("http://localhost:8001/api/days")
+        axios.get("http://scheduler--api.herokuapp.com/api/days")
         .then(res => {
           const values = res.data;
           msg.days = values;
@@ -35,9 +35,9 @@ export default function useApplicationData() {
     })
     
     Promise.all([
-      Promise.resolve(axios.get("http://localhost:8001/api/days")),
-      Promise.resolve(axios.get("http://localhost:8001/api/appointments")),
-      Promise.resolve(axios.get("http://localhost:8001/api/interviewers"))
+      Promise.resolve(axios.get("http://scheduler--api.herokuapp.com/api/days")),
+      Promise.resolve(axios.get("http://scheduler--api.herokuapp.com/api/appointments")),
+      Promise.resolve(axios.get("http://scheduler--api.herokuapp.com/api/interviewers"))
     ]).then(values => {
       dispatch({type: SET_APPLICATION_DATA, value: values})
     })
@@ -58,9 +58,9 @@ export default function useApplicationData() {
       [id]: appointmentLoader
     };
 
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    return axios.put(`http://scheduler--api.herokuapp.com/api/appointments/${id}`, {interview})
     .then(res => {
-      axios.get("http://localhost:8001/api/days")
+      axios.get("http://scheduler--api.herokuapp.com/api/days")
       .then(res => {
         const values = res.data;
         dispatch({type: SET_INTERVIEW, value: {appointment, values}});
@@ -80,9 +80,9 @@ export default function useApplicationData() {
       [id]: appointmentLoader
     };
     
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`http://scheduler--api.herokuapp.com/api/appointments/${id}`)
     .then(res => {
-      axios.get("http://localhost:8001/api/days")
+      axios.get("http://scheduler--api.herokuapp.com/api/days")
         .then(res => {
           const values = res.data;
           dispatch({type: SET_INTERVIEW, value: {appointment, values}});
