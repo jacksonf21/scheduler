@@ -2,6 +2,8 @@
 
 Interview booking website developed in React.js, that lets users view existing/create appointments from Monday to Friday. New appointments are made at empty slots, and provide a list of available interviewers for the selected day. Websockets allow users to see real-time updates occur during their session. During development Jest, Storybook, and Cypress were used for integration, isolation, and end-to-end testing.
 
+Production Link: https://i-scheduler.netlify.com/
+
 ## Setup
 
 Install dependencies with `npm install`.
